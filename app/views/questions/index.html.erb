@@ -1,0 +1,31 @@
+<div class="row">
+  <div class="col-md-8 col-md-offset-2">
+    <h1>Preguntas</h1>
+    <% if logged_in? %>
+      <p class="text-right">
+        <%= link_to "Hacer una Pregunta", new_question_path, class: "btn btn-primary" %>
+      </p>
+    <% end %>
+    <% @questions.each do |question| %>
+      <div data-id="<%= question.id %>">
+        <p><%= question.title %></p>
+        <p><%= question.body %></p>
+        <div>
+          <%= link_to "<span class='glyphicon glyphicon-eye-open'></span> Ver"
+            .html_safe,
+            question %>
+          <% if logged_in? && question.user == current_user %>
+              | <%= link_to " <span class='glyphicon glyphicon-pencil'></span> Editar"
+                  .html_safe,
+                  edit_question_path(question) %>
+              | <%= link_to " <span class='glyphicon glyphicon-trash'></span> Eliminar"
+                  .html_safe, question,
+                  method: :delete,
+                  data: { confirm: "¿Estás seguro de eliminar esta pregunta?" } %>
+          <% end %>
+        </div>
+      </div>
+      <br>
+    <% end %>
+  </div>
+</div>

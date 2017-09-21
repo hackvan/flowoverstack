@@ -1,4 +1,8 @@
 class User < ApplicationRecord
+
+  has_many :questions
+  has_many :answers
+
   before_save { email.downcase! }
 
   validates :name, presence: true,
