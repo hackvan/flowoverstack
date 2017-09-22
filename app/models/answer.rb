@@ -1,7 +1,8 @@
 class Answer < ApplicationRecord
   belongs_to :question
   belongs_to :user
-
-  validates :body, presence: true
+  has_many :comments, as: :commentable
   
+  validates :body, presence: true
+
 end

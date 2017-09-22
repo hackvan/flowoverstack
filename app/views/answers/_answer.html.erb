@@ -6,11 +6,16 @@
         .html_safe,
         edit_question_answer_path(answer.question, answer) %> |
       <%= link_to " <span class='glyphicon glyphicon-trash'></span> Eliminar"
-        .html_safe, 
+        .html_safe,
         question_answer_path(answer.question, answer),
         method: :delete,
         data: { confirm: "¿Estás seguro de eliminar esta respuesta?" } %>
     <% end %>
   </div>
 </div>
+<br>
+<h5>Comentarios:</h5>
+<%= render 'comments/comment', commentable: answer %>
+<br>
+<%= render 'comments/form', commentable: answer, url_path: question_answer_comments_path(answer.question, answer) %>
 <br>

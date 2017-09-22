@@ -10,7 +10,12 @@ Rails.application.routes.draw do
   delete 'logout', to: 'sessions#destroy'
 
   resources :questions do
-    resources :answers, except: [:index, :show, :new]
+
+    resources :answers, except: [:index, :show, :new] do
+      resources :comments, module: :answers, except: [:index, :show]
+    end
+
+    resources :comments, module: :questions, except: [:index, :show]
   end
 
 end

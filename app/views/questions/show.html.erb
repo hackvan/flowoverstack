@@ -9,6 +9,13 @@
       <%= link_to "Volver", questions_path %>
     </div>
 
+    <br>
+    <h4>Comentarios:</h4>
+    <%= render 'comments/comment', commentable: @question %>
+    <br>
+    <%= render 'comments/form', commentable: @question, url_path: question_comments_path(@question) %>
+    <br>
+
     <h3>Respuestas:</h3><br>
     <%= render 'answers/form', question: @question, answer: @answer, action: "Responder" %>
 
