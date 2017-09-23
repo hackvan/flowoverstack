@@ -10,6 +10,11 @@
 
   <body>
     <div class="container">
+      <% if logged_in? %>
+        <p><%= current_user.email %> | <%= link_to "Salir", logout_path, method: :delete %></p>
+      <% else %>
+        <p><%= link_to "Regístrate", signup_path %> | <%= link_to "Login", login_path %> </p>
+      <% end %>
       <% flash.each do |message_type, message| %>
         <div class="alert alert-<%= message_type %> alert-dismissible" role="alert">
           <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>

@@ -13,6 +13,13 @@
     <% end %>
   </div>
 </div>
+
+<br>
+<h5>Votos:</h5>
+<%= render 'votes/votes', votable: answer,
+                          c_url_path: question_answer_votes_path(answer.question, answer),
+                          d_url_path: question_answer_vote_path(answer.question, answer) %>
+
 <br>
 <h5>Comentarios:</h5>
 <%= render 'comments/comment', commentable: answer %>

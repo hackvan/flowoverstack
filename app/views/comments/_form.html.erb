@@ -1,9 +1,11 @@
 <%# commentable = local_assigns[:commentable] %>
-<%= form_with model: [commentable, Comment.new], url: url_path, local: true do |form| %>
-  <div class="input-group">
-    <%= form.text_field :body, class: "form-control", placeholder: "Nuevo comentario" %>
-    <span class="input-group-btn">
-      <%= form.submit "Comentar", class: "btn btn-default" %>
-    </span>
-  </div>
+<% if logged_in? %>
+  <%= form_with model: [commentable, Comment.new], url: url_path, local: true do |form| %>
+    <div class="input-group">
+      <%= form.text_field :body, class: "form-control", placeholder: "Nuevo comentario" %>
+      <span class="input-group-btn">
+        <%= form.submit "Comentar", class: "btn btn-default" %>
+      </span>
+    </div>
+  <% end %>
 <% end %>

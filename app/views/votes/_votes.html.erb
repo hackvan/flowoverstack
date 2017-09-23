@@ -1,0 +1,10 @@
+<div>
+  <p><%= pluralize(votable.votes.count, "Voto") %></p>
+  <% if logged_in? %>
+    <% unless votable.voted_by? current_user %>
+      <%= link_to "Votar", c_url_path, method: :post %>
+    <% else %>
+      <%= link_to "Anular", d_url_path, method: :delete %>
+    <% end %>
+  <% end %>
+</div>

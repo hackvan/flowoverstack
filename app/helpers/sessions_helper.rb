@@ -22,6 +22,8 @@ module SessionsHelper
   end
 
   def authenticate_user!
-    redirect_to login_path unless logged_in?
+    unless logged_in?
+      redirect_to login_url and return
+    end
   end
 end
