@@ -3,4 +3,6 @@ class Comment < ApplicationRecord
 
   validates :body, presence: true
 
+  scope :order_by_oldest, -> { order("id asc") }
+
 end

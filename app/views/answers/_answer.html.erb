@@ -24,5 +24,6 @@
 <h5>Comentarios:</h5>
 <%= render 'comments/comment', commentable: answer %>
 <br>
-<%= render 'comments/form', commentable: answer, url_path: question_answer_comments_path(answer.question, answer) %>
+<%= render 'comments/form', commentable: answer,
+                            url_path: question_answer_comments_path(answer.question, answer) %>
 <br>

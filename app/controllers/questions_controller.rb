@@ -3,18 +3,20 @@ class QuestionsController < ApplicationController
   before_action :authenticate_user!, only: [:new, :create, :edit, :update]
 
   def index
-    @questions = Question.all.order(created_at: :desc).limit(10)
+    @questions = Question.includes(:votes, :answers).order_by_newest.limit(10)
   end
 
   def show
     @answer  = Answer.new
-    @answers = @question.answers.all.order(created_at: :asc).limit(10)
+    @answers = @question.answers.order_by_newest.limit(10)
   end
 
   def search
-    @questions = Question.where("title LIKE ? OR body like ?", 
+    @questions = Question.includes(:votes, :answers)
+                         .where("title LIKE ? OR body like ?",
                                 "%#{params[:q]}%",
                                 "%#{params[:q]}%")
+                         .order_by_newest
     render :index
   end
 
@@ -23,7 +25,7 @@ class QuestionsController < ApplicationController
   end
 
   def create
-    @question = current_user.questions.new(question_params)
+    @question = Question.new(question_params)
     if @question.save
       flash[:success] = 'La pregunta ha sido creada con éxito.'
       redirect_to questions_path
@@ -56,7 +58,9 @@ class QuestionsController < ApplicationController
     end
 
     def question_params
-      params.require(:question).permit(:title, :body)
+      params.require(:question)
+            .permit(:title, :body)
+            .merge(user: current_user)
     end
 
 end
