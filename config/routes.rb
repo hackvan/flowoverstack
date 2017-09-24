@@ -8,6 +8,8 @@ Rails.application.routes.draw do
   post   'login',  to: 'sessions#create'
   delete 'logout', to: 'sessions#destroy'
 
+  get    'search', to: 'questions#search'
+
   resources :questions do
 
     resources :answers, except: [:index, :show, :new] do

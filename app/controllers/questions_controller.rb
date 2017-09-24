@@ -11,6 +11,13 @@ class QuestionsController < ApplicationController
     @answers = @question.answers.all.order(created_at: :asc).limit(10)
   end
 
+  def search
+    @questions = Question.where("title LIKE ? OR body like ?", 
+                                "%#{params[:q]}%",
+                                "%#{params[:q]}%")
+    render :index
+  end
+
   def new
     @question = Question.new
   end
