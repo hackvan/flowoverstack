@@ -9,7 +9,7 @@
     <% @questions.each do |question| %>
       <div data-id="<%= question.id %>">
         <p><%= question.title %></p>
-        <p><%= question.body %></p>
+        <div><%= truncate(strip_tags(markdown(question.body)), length: 250, escape: false) %></div>
         <div>
           <%= link_to "<span class='glyphicon glyphicon-eye-open'></span> Ver"
             .html_safe,

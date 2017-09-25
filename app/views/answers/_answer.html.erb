@@ -1,5 +1,5 @@
 <div data-id="<%= answer.id %>">
-  <p><%= answer.body %></p>
+  <div><%= markdown answer.body %></div>
   <div>
     <% if logged_in? && answer.user == current_user %>
       <%= link_to " <span class='glyphicon glyphicon-pencil'></span> Editar"

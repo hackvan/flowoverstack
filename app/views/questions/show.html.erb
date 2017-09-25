@@ -3,7 +3,7 @@
     <h2>Pregunta <%= @question.id %></h2>
     <p><strong>Title: </strong><%= @question.title %></p>
     <p><strong>Body:</strong></p>
-    <p><%= @question.body %></p>
+    <div><%= markdown @question.body %></div>
     <div>
       <% if logged_in? %>
         <%= link_to "Editar", edit_question_path(@question) %> |
