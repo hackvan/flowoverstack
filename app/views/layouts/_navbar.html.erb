@@ -35,8 +35,9 @@
               <%= link_to "Nueva Pregunta", new_question_path %>
             </li>
             <li class="dropdown">
-              <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">
-                <%= current_user.email %> <span class="caret"></span>
+              <a href="#" class="dropdown-toggle avatar" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">
+                <img src="<%= Gravatar.new("#{current_user.email}").image_url %>" class="img-rounded" />
+                <span class="caret"></span>
               </a>
               <ul class="dropdown-menu">
                 <li><%= link_to "Salir", logout_path, method: :delete %></li>

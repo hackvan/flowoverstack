@@ -30,6 +30,8 @@ gem 'bcrypt', '~> 3.1.7'
 
 gem 'bootstrap-sass', '~> 3.3.6'
 gem 'jquery-rails', '~> 4.1', '>= 4.1.1'
+gem 'xmlrpc', '~> 0.3.0'
+gem 'gravatar-ultimate', '~> 2.0'
 
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
