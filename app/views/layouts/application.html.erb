@@ -3,32 +3,14 @@
   <head>
     <title>Flowoverstack</title>
     <%= csrf_meta_tags %>
-
     <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
     <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
   </head>
 
   <body>
+    <%= render 'layouts/navbar' %>
+    <%= render 'layouts/alerts' %>
     <div class="container">
-      <div>
-        <% if logged_in? %>
-          <p><%= current_user.email %> | <%= link_to "Salir", logout_path, method: :delete %></p>
-        <% else %>
-          <p><%= link_to "Regístrate", signup_path %> | <%= link_to "Login", login_path %> </p>
-        <% end %>
-        <%= form_tag({controller: "questions", action: "search"},
-                     method: "get",
-                     enforce_utf8: false) do %>
-          <%= text_field_tag :q, nil, placeholder: 'Buscar...'%>
-          <%# submit_tag "Search", name: nil %>
-        <% end %>
-      </div>
-      <% flash.each do |message_type, message| %>
-        <div class="alert alert-<%= message_type %> alert-dismissible" role="alert">
-          <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-          <%= message %>
-        </div>
-      <% end %>
       <%= yield %>
     </div>
   </body>

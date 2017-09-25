@@ -1,6 +1,21 @@
 @import "bootstrap-sprockets";
 @import "bootstrap";
 @import "users";
+@import "questions";
+
+body {
+   background-color: white;
+   padding-top: 60px;
+ }
+
+.navbar-default {
+   background-color: #fafafb;
+   border-top: 3px solid #F48024;
+}
+
+.current {
+  border-bottom: 2px solid #F48024;
+}
 
 .field_with_errors {
   @extend .has-error;
