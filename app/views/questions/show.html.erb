@@ -1,35 +1,86 @@
 <div class="row">
   <div class="col-md-8 col-md-offset-2">
-    <h2>Pregunta <%= @question.id %></h2>
-    <p><strong>Title: </strong><%= @question.title %></p>
-    <p><strong>Body:</strong></p>
-    <div><%= markdown @question.body %></div>
-    <div>
-      <% if logged_in? %>
-        <%= link_to "Editar", edit_question_path(@question) %> |
-      <% end %>
-      <%= link_to "Volver", questions_path %>
+    <div class="question" data-id="<%= @question.id %>">
+      <table>
+        <tbody>
+          <tr>
+            <td colspan="2">
+              <div class="question__header">
+              <h1><%= @question.title %></h1>
+            </div>
+            </td>
+          </tr>
+          <tr>
+            <td class="votecell">
+              <div class="question-votes">
+                <%= render 'votes/votes', votable: @question,
+                                          c_url_path: question_votes_path(@question),
+                                          d_url_path: question_vote_path(@question) %>
+              </div>
+            </td>
+            <td class="question__cell">
+              <div class="question__body">
+                <p>
+                  <%= markdown @question.body %>
+                </p>
+                <table class="question__footer">
+                  <tbody>
+                    <tr>
+                      <td class="vt">
+                        <% if logged_in? && @question.user == current_user %>
+                          <div class="question__actions">
+                            <ul>
+                              <li>
+                                <%= link_to " <span class='glyphicon glyphicon-pencil'></span> Editar"
+                                      .html_safe,
+                                      edit_question_path(@question) %>
+                              </li>
+                              <li>
+                                <%= link_to " <span class='glyphicon glyphicon-trash'></span> Eliminar"
+                                      .html_safe, @question,
+                                      method: :delete,
+                                      data: { confirm: "¿Estás seguro de eliminar esta pregunta?" } %>
+                              </li>
+                            </ul>
+                          </div>
+                        <% end %>
+                      </td>
+                      <td class="user-signature">
+                        <div class="user-action-time">
+                          formulada hace <%= time_ago_in_words @question.created_at %>
+                        </div>
+                        <div class= "user-details">
+                          <a href="#"><%= @question.user.email %></a>
+                        </div>
+                      </td>
+                    </tr>
+                  </tbody>
+                </table>
+              </div>
+            </td>
+          </tr>
+          <tr>
+            <td class="votecell"></td>
+            <td>
+              <div class="comments">
+                <table>
+                  <tbody>
+                    <%= render 'comments/comment', commentable: @question %>
+                  </tbody>
+                  <tfoot>
+                    <tr>
+                      <td></td>
+                      <td class="comment-form">
+                        <%= render 'comments/form', commentable: @question, url_path: question_comments_path(@question) %>
+                      </td>
+                    </tr>
+                  </tfoot>
+                </table>
+              </div>
+            </td>
+          </tr>
+        </tbody>
+      </table>
     </div>
-
-    <br>
-    <h4>Votos</h4>
-    <%= render 'votes/votes', votable: @question,
-                              c_url_path: question_votes_path(@question),
-                              d_url_path: question_vote_path(@question) %>
-
-    <br>
-    <h4>Comentarios:</h4>
-    <%= render 'comments/comment', commentable: @question %>
-    <br>
-    <%= render 'comments/form', commentable: @question, url_path: question_comments_path(@question) %>
-
-    <br>
-    <h3>Respuestas:</h3><br>
-    <%= render 'answers/form', question: @question, answer: @answer, action: "Responder" %>
-
-    <% @answers.each do |answer| %>
-      <%= render 'answers/answer', answer: answer %>
-    <% end %>
-
   </div>
 </div>

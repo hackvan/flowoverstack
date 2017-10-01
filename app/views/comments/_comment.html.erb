@@ -1,7 +1,12 @@
 <% commentable.comments.each do |comment| %>
-  <p>
-    <hr>
-    <%= comment.body %>
-    <em><%= time_ago_in_words comment.created_at %></em>
-  </p>
+  <tr class="comment">
+    <td class="comment-actions">
+    </td>
+    <td class="comment-text">
+      <span><%= comment.body %></span>
+      –
+      <a class="comment-user" href="#"></a>
+      <span class="comment-date"><%= time_ago_in_words comment.created_at %></span>
+    </td>
+  </tr>
 <% end %>

@@ -1,11 +1,23 @@
 <%# commentable = local_assigns[:commentable] %>
 <% if logged_in? %>
   <%= form_with model: [commentable, Comment.new], url: url_path, local: true do |form| %>
-    <div class="input-group">
-      <%= form.text_field :body, class: "form-control", placeholder: "Nuevo comentario" %>
-      <span class="input-group-btn">
-        <%= form.submit "Comentar", class: "btn btn-default" %>
-      </span>
-    </div>
+    <table>
+      <tbody>
+        <tr>
+          <td>
+            <%= form.text_area :body, cols: "68", rows: "2", placeholder: "Use los comentarios para solicitar mas información o sugerir mejoras. Evite responder las preguntas en los comentarios." %>
+          </td>
+          <td class="vt">
+            <%= form.submit "Comentar", class: "btn btn-default" %>
+          </td>
+        </tr>
+        <tr>
+          <td colspan="2">
+            <span class="text-counter cool">ingrese al menos 15 caracteres</span>
+            <span class="form-error"></span>
+          </td>
+        </tr>
+      </tbody>
+    </table>
   <% end %>
 <% end %>

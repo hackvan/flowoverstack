@@ -8,7 +8,9 @@
           <span class="icon-bar"></span>
           <span class="icon-bar"></span>
         </button>
-        <strong><%= link_to "FlowOverStack", root_path, class: "navbar-brand" %></strong>
+        <%= link_to root_path, class: "navbar-brand" do %>
+          Flow<strong>OverStack</strong>
+        <% end %>
       </div>
 
       <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">

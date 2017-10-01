@@ -1,33 +1,4 @@
 @import "bootstrap-sprockets";
 @import "bootstrap";
-@import "users";
+@import "theme";
 @import "questions";
-
-body {
-   background-color: white;
-   padding-top: 60px;
- }
-
-.navbar-default {
-   background-color: #fafafb;
-   border-top: 3px solid #F48024;
-}
-
-.navbar-nav > .current {
-  border-bottom: 2px solid #F48024;
-}
-
-.navbar-nav > li > a.avatar {
-  padding-top: 7px;
-  padding-bottom: 7px;
-  img {
-    width: 35px;
-  }
-}
-
-.field_with_errors {
-  @extend .has-error;
-  .form-control {
-    color: $state-danger-text;
-  }
-}

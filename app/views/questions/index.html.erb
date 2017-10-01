@@ -1,31 +1,50 @@
 <div class="row">
   <div class="col-md-8 col-md-offset-2">
-    <h1>Preguntas</h1>
-    <% if logged_in? %>
-      <p class="text-right">
-        <%= link_to "Hacer una Pregunta", new_question_path, class: "btn btn-primary" %>
-      </p>
-    <% end %>
     <% @questions.each do |question| %>
-      <div data-id="<%= question.id %>">
-        <p><%= question.title %></p>
-        <div><%= truncate(strip_tags(markdown(question.body)), length: 250, escape: false) %></div>
-        <div>
-          <%= link_to "<span class='glyphicon glyphicon-eye-open'></span> Ver"
-            .html_safe,
-            question %>
-          <% if logged_in? && question.user == current_user %>
-              | <%= link_to " <span class='glyphicon glyphicon-pencil'></span> Editar"
+      <div class="questions" data-id="<%= question.id %>">
+        <div class="questions__stats">
+          <div class="questions__votes">
+            <div class="questions__mini_counts">
+              <span><%= question.votes.size %></span>
+            </div>
+            <div>Votos</div>
+          </div>
+          <div class="questions__answers">
+            <div class="questions__mini_counts">
+              <span><%= question.answers.size %></span>
+            </div>
+            <div>Respuestas</div>
+          </div>
+        </div>
+        <div class="questions__summary">
+          <h3>
+            <%= link_to question.title, question, class: "questions__hyperlink" %>
+          </h3>
+          <p>
+            <%= truncate(strip_tags(markdown(question.body)), length: 250, escape: false) %>
+          </p>
+          <div class="questions__actions">
+            <%= link_to "<span class='glyphicon glyphicon-eye-open'></span> Ver"
                   .html_safe,
-                  edit_question_path(question) %>
-              | <%= link_to " <span class='glyphicon glyphicon-trash'></span> Eliminar"
-                  .html_safe, question,
-                  method: :delete,
-                  data: { confirm: "¿Estás seguro de eliminar esta pregunta?" } %>
-          <% end %>
+                  question %>
+            <% if logged_in? && question.user == current_user %>
+              <span> | </span>
+              <%= link_to " <span class='glyphicon glyphicon-pencil'></span> Editar"
+                    .html_safe,
+                    edit_question_path(question) %>
+              <span> | </span>
+              <%= link_to " <span class='glyphicon glyphicon-trash'></span> Eliminar"
+                    .html_safe, question,
+                    method: :delete,
+                    data: { confirm: "¿Estás seguro de eliminar esta pregunta?" } %>
+            <% end %>
+          </div>
+          <div class="questions__started">
+            formulada hace <%= time_ago_in_words question.created_at %>
+            por <a href="#"><%= question.user.email %></a>
+          </div>
         </div>
       </div>
-      <br>
     <% end %>
   </div>
 </div>
