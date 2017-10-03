@@ -7,6 +7,7 @@ class Answer < ApplicationRecord
   validates :body, presence: true
 
   scope :order_by_newest, -> { order("id desc") }
+  scope :order_by_oldest, -> { order("id asc") }
 
   def voted_by?(user)
     votes.exists?(user: user)

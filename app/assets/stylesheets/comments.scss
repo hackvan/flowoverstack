@@ -1,3 +1,82 @@
-// Place all the styles related to the Comments controller here.
-// They will automatically be included in application.css.
-// You can use Sass (SCSS) here: http://sass-lang.com/
+.comments {
+    width: 660px;
+    margin-top: 10px;
+    padding-bottom: 10px;
+    border-top: 1px solid #e4e6e8;
+}
+
+.comment-actions {
+    padding-left: 3px;
+    width: 10px;
+}
+
+tr.comment>td {
+    padding: 6px 6px 6px 0;
+    vertical-align: top;
+    line-height: 1.3;
+    border-bottom: 1px solid #eff0f1;
+}
+
+.comment-text {
+    font-size: 13px;
+    line-height: 1.3;
+}
+
+a.comment-user {
+    white-space: nowrap;
+    padding: 0;
+}
+
+.comment-date {
+    border-bottom: none;
+    color: #9199a1;
+}
+
+.comment-form {
+    padding-top: 6px;
+    vertical-align: text-top;
+}
+
+.comment-form>form textarea {
+    width: 470px;
+    resize: vertical;
+    box-shadow: 0 1px 2px rgba(12, 13, 14, 0.1) inset;
+    padding: 8px 10px;
+    font-family: Arial, "Helvetica Neue", Helvetica, sans-serif;
+    font-size: 14px;
+    color: #3b4045;
+    background: #FFF;
+    border: 1px solid #c8ccd0;
+}
+
+.comment-form > form input {
+    margin-left: 10px;
+    margin-top: 1px;
+    /* display: block; */
+    /* cursor: pointer; */
+    /* color: #FFF; */
+    background-color: #0095ff;
+    border-color: #07c;
+    /* box-shadow: inset 0 1px 0 #66bfff; */
+    padding: .61538462em 1em;
+    min-height: 2.46153846em;
+    /* box-sizing: border-box; */
+    /* font-weight: 400; */
+    line-height: 1;
+    /* text-align: center; */
+    /* text-decoration: none; */
+    /* border-radius: 2px; */
+    /* border: 1px solid transparent; */
+}
+.comment-form > form input:hover {
+  background-color: #337ab7;
+}
+
+.cool, .mini-counts.cool {
+  color: #9199a1;
+}
+
+.text-counter {
+  margin-right: 20px;
+  font-size: 12px;
+}

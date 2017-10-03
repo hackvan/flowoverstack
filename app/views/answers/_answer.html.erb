@@ -1,29 +1,76 @@
-<div data-id="<%= answer.id %>">
-  <div><%= markdown answer.body %></div>
-  <div>
-    <% if logged_in? && answer.user == current_user %>
-      <%= link_to " <span class='glyphicon glyphicon-pencil'></span> Editar"
-        .html_safe,
-        edit_question_answer_path(answer.question, answer) %> |
-      <%= link_to " <span class='glyphicon glyphicon-trash'></span> Eliminar"
-        .html_safe,
-        question_answer_path(answer.question, answer),
-        method: :delete,
-        data: { confirm: "¿Estás seguro de eliminar esta respuesta?" } %>
-    <% end %>
-  </div>
+<div class="answer" data-id="<%= answer.id %>">
+  <table>
+    <tbody>
+      <tr>
+        <td class="votecell">
+          <div class="votes">
+            <%= render 'votes/votes', votable: answer,
+                                      c_url_path: question_answer_votes_path(answer.question, answer),
+                                      d_url_path: question_answer_vote_path(answer.question, answer) %>
+          </div>
+        </td>
+        <td class="answer__cell">
+          <div class="answer__body">
+            <p>
+              <%= markdown answer.body %>
+            </p>
+            <table class="answer__footer">
+              <tbody>
+                <tr>
+                  <td class="vt">
+                    <% if logged_in? && answer.user == current_user %>
+                      <div class="answer__actions">
+                        <ul>
+                          <li>
+                            <%= link_to " <span class='glyphicon glyphicon-pencil'></span> Editar"
+                                  .html_safe,
+                                  edit_question_answer_path(answer.question, answer) %>
+                          </li>
+                          <li>
+                            <%= link_to " <span class='glyphicon glyphicon-trash'></span> Eliminar"
+                                  .html_safe,
+                                  question_answer_path(answer.question, answer),
+                                  method: :delete,
+                                  data: { confirm: "¿Estás seguro de eliminar esta respuesta?" } %>
+                          </li>
+                        </ul>
+                      </div>
+                    <% end %>
+                  </td>
+                  <td class="user-signature">
+                    <div class="user-action-time">
+                      contestada hace <%= time_ago_in_words answer.created_at %>
+                    </div>
+                    <div class= "user-details">
+                      <%= mail_to answer.user.email %>
+                    </div>
+                  </td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </td>
+      </tr>
+      <tr>
+        <td class="votecell"></td>
+        <td>
+          <div class="comments">
+            <table>
+              <tbody>
+                <%= render 'comments/comment', commentable: answer %>
+              </tbody>
+              <tfoot>
+                <tr>
+                  <td></td>
+                  <td class="comment-form">
+                    <%= render 'comments/form', commentable: answer, url_path: question_answer_comments_path(answer.question, answer) %>
+                  </td>
+                </tr>
+              </tfoot>
+            </table>
+          </div>
+        </td>
+      </tr>
+    </tbody>
+  </table>
 </div>
-
-<br>
-<h5>Votos:</h5>
-<%= render 'votes/votes', votable: answer,
-                          c_url_path: question_answer_votes_path(answer.question, answer),
-                          d_url_path: question_answer_vote_path(answer.question, answer) %>
-
-<br>
-<h5>Comentarios:</h5>
-<%= render 'comments/comment', commentable: answer %>
-<br>
-<%= render 'comments/form', commentable: answer,
-                            url_path: question_answer_comments_path(answer.question, answer) %>
-<br>

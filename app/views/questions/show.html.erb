@@ -12,7 +12,7 @@
           </tr>
           <tr>
             <td class="votecell">
-              <div class="question-votes">
+              <div class="votes">
                 <%= render 'votes/votes', votable: @question,
                                           c_url_path: question_votes_path(@question),
                                           d_url_path: question_vote_path(@question) %>
@@ -50,7 +50,7 @@
                           formulada hace <%= time_ago_in_words @question.created_at %>
                         </div>
                         <div class= "user-details">
-                          <a href="#"><%= @question.user.email %></a>
+                          <%= mail_to @question.user.email %>
                         </div>
                       </td>
                     </tr>
@@ -81,6 +81,15 @@
           </tr>
         </tbody>
       </table>
+    </div>
+    <div class="answers">
+      <div class="answers__header">
+        <h2><%= pluralize(@question.answers.count, 'Respuesta', 'Respuestas') %>:</h2>
+      </div>
+      <% @answers.each do |answer| %>
+        <%= render 'answers/answer', answer: answer %>
+      <% end %>
+      <%= render 'answers/form', question: @question, answer: @answer, action: "Publica tu respuesta" %>
     </div>
   </div>
 </div>

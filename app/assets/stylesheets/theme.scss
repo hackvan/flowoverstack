@@ -5,7 +5,7 @@ body {
 
 .navbar-default {
    background-color: #fafafb;
-   border-top: 3px solid #F48024;
+   border-top: 3px solid #F48024 /* #F48024 */ ;
 }
 
 .navbar-nav > .current {
@@ -25,4 +25,12 @@ body {
   .form-control {
     color: $state-danger-text;
   }
+}
+
+.vt {
+  vertical-align: top;
+}
+
+.votecell {
+  vertical-align: top;
 }

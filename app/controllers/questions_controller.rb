@@ -8,7 +8,7 @@ class QuestionsController < ApplicationController
 
   def show
     @answer  = Answer.new
-    @answers = @question.answers.order_by_newest.limit(10)
+    @answers = @question.answers.order_by_oldest.limit(10)
   end
 
   def search
@@ -40,7 +40,7 @@ class QuestionsController < ApplicationController
   def update
     if @question.update(question_params)
       flash[:success] = 'La pregunta ha sido actualizada con éxito.'
-      redirect_to questions_path
+      redirect_to @question
     else
       render :edit
     end
