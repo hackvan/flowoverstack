@@ -41,7 +41,7 @@
           </div>
           <div class="questions__started">
             formulada hace <%= time_ago_in_words question.created_at %>
-            por <a href="#"><%= question.user.email %></a>
+            por <%= mail_to question.user.email %></a>
           </div>
         </div>
       </div>
