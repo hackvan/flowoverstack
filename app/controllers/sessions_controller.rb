@@ -11,7 +11,7 @@ class SessionsController < ApplicationController
       # redirect_back(fallback_location: root_path)
       redirect_to root_path
     else
-      flash.now[:danger] = 'Combinación Email/Password incorrecta!'
+      flash.now[:danger] = t(:login_failed, scope: :custom)
       render 'new'
     end
   end

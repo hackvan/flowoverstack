@@ -7,7 +7,7 @@ class UsersController < ApplicationController
     @user = User.new(user_params)
     if @user.save
       log_in @user
-      flash[:success] = "Welcome to the FlowOverStack!"
+      flash[:success] = t(:sign_up_success, scope: :custom)
       redirect_to root_path
     else
       render 'new'
