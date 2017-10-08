@@ -63,12 +63,14 @@
                 <tr>
                   <td></td>
                   <td>
-                    <div class="comment-link-form">
-                      <a id="comments-link" href="#">añade un comentario</a>
-                    </div>
-                    <div class="comment-form">
-                      <%= render 'comments/form', commentable: answer, url_path: question_answer_comments_path(answer.question, answer) %>
-                    </div>
+                    <% if logged_in? %>
+                      <div class="comment-link-form">
+                        <a id="comments-link" href="#">añade un comentario</a>
+                      </div>
+                      <div class="comment-form">
+                        <%= render 'comments/form', commentable: answer, url_path: question_answer_comments_path(answer.question, answer) %>
+                      </div>
+                    <% end %>
                   </td>
                 </tr>
               </tfoot>
