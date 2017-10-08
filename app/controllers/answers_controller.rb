@@ -5,6 +5,8 @@ class AnswersController < ApplicationController
     @answer = Answer.new(answer_params)
     if @answer.save
       flash[:success] = 'La respuesta ha sido registrada con éxito.'
+    else
+      flash[:danger] = 'La respuesta no puede estar en blanco.'
     end
     redirect_to question_path(params[:question_id])
   end
