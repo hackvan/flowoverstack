@@ -1,3 +1,7 @@
-# Place all the behaviors and hooks related to the matching controller here.
-# All this logic will automatically be available in application.js.
-# You can use CoffeeScript in this file: http://coffeescript.org/
+$(document).on "turbolinks:load", ->
+  $(document).on "click", "#comments-link", (event) ->
+    event.preventDefault()
+    parentComment = $(this).closest(".comments")
+    parentComment.find(".comment-link-form").hide()
+    parentComment.find(".comment-form").fadeIn( "slow" )
+    parentComment.find(".comment-form textarea").focus()

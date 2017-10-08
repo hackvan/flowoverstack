@@ -35,6 +35,18 @@ a.comment-user {
 .comment-form {
     padding-top: 6px;
     vertical-align: text-top;
+    display: none;
+}
+
+.comment-link-form {
+    padding-top: 6px;
+    vertical-align: text-top;
+    a {
+      color: #848d95;
+      opacity: .6;
+      text-decoration: none;
+      font-size: 14px;
+    }
 }
 
 .comment-form>form textarea {

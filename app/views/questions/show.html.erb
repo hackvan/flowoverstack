@@ -70,8 +70,13 @@
                   <tfoot>
                     <tr>
                       <td></td>
-                      <td class="comment-form">
-                        <%= render 'comments/form', commentable: @question, url_path: question_comments_path(@question) %>
+                      <td>
+                        <div class="comment-link-form">
+                          <a id="comments-link" href="#">añade un comentario</a>
+                        </div>
+                        <div class="comment-form">
+                          <%= render 'comments/form', commentable: @question, url_path: question_comments_path(@question) %>
+                        </div>
                       </td>
                     </tr>
                   </tfoot>
