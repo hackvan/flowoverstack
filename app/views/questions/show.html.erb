@@ -86,10 +86,15 @@
       <div class="answers__header">
         <h2><%= pluralize(@question.answers.count, 'Respuesta', 'Respuestas') %>:</h2>
       </div>
-      <% @answers.each do |answer| %>
-        <%= render 'answers/answer', answer: answer %>
+
+      <% if @question.answers.count > 0 %>
+        <%= render @answers %>
+      <% else %>
+        <%= render 'answers/no_answers' %>
       <% end %>
+
       <%= render 'answers/form', question: @question, answer: @answer, action: "Publica tu respuesta" %>
+
     </div>
   </div>
 </div>
