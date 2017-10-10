@@ -1,12 +1,10 @@
-<% commentable.comments.each do |comment| %>
-  <tr class="comment">
-    <td class="comment-actions">
-    </td>
-    <td class="comment-text">
-      <span><%= comment.body %></span>
-      –
-      <%= mail_to comment.user.email, nil, class: "comment-user" %>
-      <span class="comment-date"><%= time_ago_in_words comment.created_at %></span>
-    </td>
-  </tr>
-<% end %>
+<tr class="comment">
+  <td class="comment-actions">
+  </td>
+  <td class="comment-text">
+    <span><%= comment.body %></span>
+    –
+    <%= mail_to comment.user.email, nil, class: "comment-user" %>
+    <span class="comment-date"><%= time_ago_in_words comment.created_at %></span>
+  </td>
+</tr>

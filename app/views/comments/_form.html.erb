@@ -1,5 +1,4 @@
-<%# commentable = local_assigns[:commentable] %>
-<%= form_with model: [commentable, Comment.new], url: url_path, local: true do |form| %>
+<%= form_with model: [commentable, commentable.comments.new], url: url_path do |form| %>
   <table>
     <tbody>
       <tr>

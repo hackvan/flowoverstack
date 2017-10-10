@@ -3,7 +3,10 @@ class Questions::CommentsController < CommentsController
 
   def create
     super
-    redirect_to @commentable
+    respond_to do |format|
+      format.html { redirect_to @commentable }
+      format.js
+    end
   end
 
   private

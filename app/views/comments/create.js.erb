@@ -1,0 +1,9 @@
+<% if @comment.errors.empty? %>
+  var $commentable = $('.<%= @comment.commentable.class.name.downcase %>[data-id=<%= @comment.commentable.id %>]');
+
+  $commentable.find('.comments > table > tbody')
+    .append('<%= j(render "comment", comment: @comment) %>');
+
+  $commentable.find('.comment-form textarea')
+    .val('');
+<% end %>

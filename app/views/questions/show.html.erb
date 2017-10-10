@@ -65,7 +65,7 @@
               <div class="comments">
                 <table>
                   <tbody>
-                    <%= render 'comments/comment', commentable: @question %>
+                    <%= render @question.comments %>
                   </tbody>
                   <tfoot>
                     <tr>
