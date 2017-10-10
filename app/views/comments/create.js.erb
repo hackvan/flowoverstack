@@ -1,0 +1,21 @@
+var $commentable = $('.<%= @comment.commentable.class.name.downcase %>[data-id=<%= @comment.commentable.id %>]');
+
+$commentable.find('.comment-form #comment-text')
+  .removeClass('field_with_errors');
+$commentable.find('.comment-form #comment-alert')
+  .html('<%= I18n.t(:comment_alert_default, scope: :custom) %>');
+
+
+<% if @comment.errors.empty? %>
+  $commentable.find('.comments > table > tbody')
+    .append('<%= j(render "comment", comment: @comment) %>');
+
+  $commentable.find('.comment-form textarea')
+    .val('');
+<% else %>
+  $commentable.find('.comment-form #comment-text')
+    .addClass('field_with_errors');
+
+  $commentable.find('#comment-alert')
+    .html('<%= @comment.errors.full_messages[0] %>');
+<% end %>

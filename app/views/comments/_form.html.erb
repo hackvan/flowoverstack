@@ -1,14 +1,15 @@
-<%# commentable = local_assigns[:commentable] %>
-<%= form_with model: [commentable, Comment.new], url: url_path, local: true do |form| %>
+<%= form_with model: [commentable, commentable.comments.new], url: url_path do |form| %>
   <table>
     <tbody>
       <tr>
         <td>
-          <% if commentable.is_a? Question %>
-            <%= form.text_area :body, class: "form-control", cols: "68", rows: "2", placeholder: "Use los comentarios para solicitar mas información o sugerir mejoras. Evite responder las preguntas en los comentarios." %>
-          <% else %>
-            <%= form.text_area :body, class: "form-control", cols: "68", rows: "2", placeholder: 'Use los comentarios para solicitar mas información o sugerir mejoras. Evite comentarios como "+1" o "gracias".' %>
-          <% end %>
+          <div id="comment-text">
+            <% if commentable.is_a? Question %>
+              <%= form.text_area :body, class: "form-control", cols: "68", rows: "2", placeholder: "Use los comentarios para solicitar mas información o sugerir mejoras. Evite responder las preguntas en los comentarios." %>
+            <% else %>
+              <%= form.text_area :body, class: "form-control", cols: "68", rows: "2", placeholder: 'Use los comentarios para solicitar mas información o sugerir mejoras. Evite comentarios como "+1" o "gracias".' %>
+            <% end %>
+          </div>
         </td>
         <td class="vt">
           <%= form.submit "Comentar", class: "btn btn-info" %>
@@ -16,8 +17,7 @@
       </tr>
       <tr>
         <td colspan="2">
-          <span class="text-counter cool">ingrese al menos 15 caracteres</span>
-          <span class="form-error"></span>
+          <span id="comment-alert" class="text-counter cool"><%= I18n.t(:comment_alert_default, scope: :custom) %></span>
         </td>
       </tr>
     </tbody>

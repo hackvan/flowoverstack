@@ -7,11 +7,7 @@ class CommentsController < ApplicationController
 
   def create
     @comment = @commentable.comments.new(comment_params)
-    if @comment.save
-      flash[:success] = 'El comentario ha sido registrado con éxito.'
-    else
-      flash[:danger] = 'El comentario no puede estar en blanco.'
-    end
+    @comment.save
   end
 
   private

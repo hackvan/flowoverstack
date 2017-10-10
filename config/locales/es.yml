@@ -5,6 +5,7 @@ es:
     login_failed: ¡Combinación de Correo electrónico y Contraseña incorrecta!
     sign_up_success: ¡Bienvenido a FlowOverStack!
     form_has_error: El formulario contiene
+    comment_alert_default: Ingrese al menos 15 caracteres
   activerecord:
     models:
       answer: Respuesta
@@ -16,7 +17,7 @@ es:
       answer:
         body: Cuerpo
       comment:
-        body: Cuerpo
+        body: Comentario
       question:
         title: Titulo
         body: Descripción
