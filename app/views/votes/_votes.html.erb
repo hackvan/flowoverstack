@@ -3,7 +3,9 @@
     <tr>
       <td>
         <% if votable.voted_by? current_user %>
-          <span class='glyphicon glyphicon-triangle-top votes_on'></span>
+          <%= link_to d_url_path, method: :delete do %>
+            <span class='glyphicon glyphicon-triangle-top votes_on'></span>
+          <% end %>
         <% else %>
           <%= link_to c_url_path, method: :post do %>
             <span class='glyphicon glyphicon-triangle-top votes_off'></span>
@@ -18,13 +20,6 @@
     </tr>
     <tr>
       <td>
-        <% if votable.voted_by? current_user %>
-          <%= link_to d_url_path, method: :delete do %>
-            <span class='glyphicon glyphicon-triangle-bottom votes_off'></span>
-          <% end %>
-        <% else %>
-          <span class='glyphicon glyphicon-triangle-bottom votes_off'></span>
-        <% end %>
       </td>
     </tr>
   </tbody>
