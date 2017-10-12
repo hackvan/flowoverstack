@@ -15,7 +15,7 @@ es:
       vote: Voto
     attributes:
       answer:
-        body: Cuerpo
+        body: Respuesta
       comment:
         body: Comentario
       question:

@@ -1,4 +1,5 @@
 class AnswersController < ApplicationController
+  before_action :set_answer, only: [:show, :edit, :update, :destroy]
   before_action :authenticate_user!, only: [:create, :edit, :update, :destroy]
 
   def create
@@ -22,7 +23,6 @@ class AnswersController < ApplicationController
   end
 
   def destroy
-    @answer = Answer.find_by(question_id: params[:question_id], id: params[:id])
     if @answer.destroy
       flash[:success] = 'La respuesta ha sido eliminada con éxito.'
     end
@@ -30,6 +30,10 @@ class AnswersController < ApplicationController
   end
 
   private
+    def set_answer
+      @answer = Answer.find_by(question_id: params[:question_id], id: params[:id])
+    end
+
     def answer_params
       params.require(:answer)
         .permit(:body)
