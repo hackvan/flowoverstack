@@ -1,5 +1,22 @@
 <tr class="comment">
   <td class="comment-actions">
+    <% if logged_in? && comment.user == current_user %>
+      <% if comment.commentable.is_a? Question %>
+        <%= link_to "<span class='glyphicon glyphicon-trash'></span>"
+              .html_safe,
+              question_comment_path(comment.commentable, comment),
+              method: :delete,
+              data: { confirm: "¿Estás seguro de eliminar este comentario?" } %>
+      <% elsif comment.commentable.is_a? Answer %>
+        <%= link_to "<span class='glyphicon glyphicon-trash'></span>"
+            .html_safe,
+            question_answer_comment_path(comment.commentable.question,
+                                         comment.commentable,
+                                         comment),
+            method: :delete,
+            data: { confirm: "¿Estás seguro de eliminar este comentario?" } %>
+      <% end %>
+    <% end %>
   </td>
   <td class="comment-text">
     <span><%= comment.body %></span>

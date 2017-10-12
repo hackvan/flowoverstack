@@ -6,7 +6,7 @@
           <div id="comment-text">
             <% if commentable.is_a? Question %>
               <%= form.text_area :body, class: "form-control", cols: "68", rows: "2", placeholder: "Use los comentarios para solicitar mas información o sugerir mejoras. Evite responder las preguntas en los comentarios." %>
-            <% else %>
+            <% elsif commentable.is_a? Answer %>
               <%= form.text_area :body, class: "form-control", cols: "68", rows: "2", placeholder: 'Use los comentarios para solicitar mas información o sugerir mejoras. Evite comentarios como "+1" o "gracias".' %>
             <% end %>
           </div>
