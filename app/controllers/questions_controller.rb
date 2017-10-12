@@ -14,7 +14,7 @@ class QuestionsController < ApplicationController
   def search
     search_words = params[:q].downcase
     @questions = Question.includes(:votes, :answers)
-                         .where("title LIKE ? OR body LIKE ?",
+                         .where("lower(title) LIKE ? OR lower(body) LIKE ?",
                                 "%#{search_words}%",
                                 "%#{search_words}%")
                          .order_by_newest
